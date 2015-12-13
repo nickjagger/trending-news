@@ -3,8 +3,8 @@ package com.nmj.trendingNews.domain;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "fortunes")
-public class Fortune {
+@Table(name = "tweets")
+public class Tweet {
 
     @Id
     @GeneratedValue

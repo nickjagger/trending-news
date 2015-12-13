@@ -1,29 +1,29 @@
 package com.nmj.trendingNews.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nmj.trendingNews.domain.Fortune;
-import com.nmj.trendingNews.respositories.FortuneRepository;
-
-import java.util.List;
+import com.nmj.trendingNews.domain.Tweet;
+import com.nmj.trendingNews.respositories.TwitterRepository;
 
 @RestController
-public class FortuneController {
+public class TrendingNewsController {
 
     @Autowired
-    FortuneRepository repository;
+    TwitterRepository repository;
 
     @RequestMapping("/fortunes")
-    public Iterable<Fortune> fortunes() {
+    public Iterable<Tweet> tweets() {
         return repository.findAll();
     }
 
     @RequestMapping("/random")
-    public Fortune randomFortune() {
-        List<Fortune> randomFortunes = repository.randomFortunes(new PageRequest(0, 1));
+    public Tweet randomFortune() {
+        List<Tweet> randomFortunes = repository.randomFortunes(new PageRequest(0, 1));
         return randomFortunes.get(0);
     }
 }
