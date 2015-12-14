@@ -2,15 +2,15 @@ package com.nmj.trendingNews;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.scheduling.annotation.EnableAsync;
 
 @SpringBootApplication
-@EnableJpaRepositories
-@EnableDiscoveryClient
+@EnableAsync
+//@EnableJpaRepositories
+//@EnableDiscoveryClient
 public class Application {
 
-    public static void main(String[] args) {
-        SpringApplication.run(Application.class, args);
-    }
+	public static void main(final String[] args) {
+		SpringApplication.run(Application.class, args);
+	}
 }

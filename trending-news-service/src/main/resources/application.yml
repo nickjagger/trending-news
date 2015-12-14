@@ -1,25 +1,6 @@
-spring:
-  jpa:
-    hibernate:
-      ddl-auto: create-drop
+ribbon:
+  eureka:
+   enabled: false
 
----
-
-spring:
-  profiles: default
-  jpa:
-    database: HSQL
-
----
-
-spring:
-  profiles: pcf
-  jpa:
-    database: MYSQL
-
----
-
-spring:
-  profiles: pws
-  jpa:
-    database: POSTGRESQL
+github:
+  listOfServers: https://api.github.com:443
