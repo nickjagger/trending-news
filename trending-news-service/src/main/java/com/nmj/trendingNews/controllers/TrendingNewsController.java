@@ -1,12 +1,13 @@
 package com.nmj.trendingNews.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.client.RestTemplate;
 
 import com.nmj.trendingNews.domain.User;
+import com.nmj.trendingNews.service.GitHubService;
 
 @RestController
 public class TrendingNewsController {
@@ -14,12 +15,18 @@ public class TrendingNewsController {
 	//	@Autowired
 	//    TwitterRepository repository;
 
+	@Value("${temp.value}")
+	private String configValue;
+
 	@Autowired
-	private RestTemplate restTemplate;
+	private GitHubService gitHubService;
 
 	@RequestMapping("/news/{subject}")
 	public User news(@PathVariable final String subject) {
-		final User user = restTemplate.getForObject("https://github/users/" + subject, User.class);
+
+		System.out.println(configValue);
+
+		final User user = gitHubService.getUser(subject);
 		//		return repository.findAll();
 		return user;
 	}
