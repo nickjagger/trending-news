@@ -4,4 +4,6 @@ ribbon:
 
 github:
   url: https://github
+  endpoints:
+    user: /user
   listOfServers: https://api.github.com:443
