@@ -1,2 +1,9 @@
-temp:
-  value: hello-world
+ribbon:
+  eureka:
+   enabled: false
+
+github:
+  url: https://github
+  endpoints:
+    users: /users/
+  listOfServers: https://api.github.com:443
