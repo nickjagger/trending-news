@@ -3,7 +3,7 @@ package com.nmj.trendingNews.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
-public class User {
+public class GithubUser {
 
 	private String name;
 	private String blog;

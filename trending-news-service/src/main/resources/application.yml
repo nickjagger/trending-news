@@ -1,6 +1,0 @@
-ribbon:
-  eureka:
-   enabled: false
-
-github:
-  listOfServers: https://api.github.com:443

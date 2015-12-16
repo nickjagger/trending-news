@@ -1,34 +1,28 @@
 package com.nmj.trendingNews.controllers;
 
+import java.util.concurrent.Callable;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.nmj.trendingNews.domain.User;
+import com.nmj.trendingNews.domain.GithubUser;
 import com.nmj.trendingNews.service.GitHubService;
 
 @RestController
 public class TrendingNewsController {
 
-	//	@Autowired
-	//    TwitterRepository repository;
-
-	@Value("${temp.value}")
-	private String configValue;
-
 	@Autowired
 	private GitHubService gitHubService;
 
-	@RequestMapping("/news/{subject}")
-	public User news(@PathVariable final String subject) {
-
-		System.out.println(configValue);
-
-		final User user = gitHubService.getUser(subject);
-		//		return repository.findAll();
-		return user;
+	// Using Callable, thread returns instantly
+	//
+	// TODO: Check this with log-out statements!
+	//
+	@RequestMapping("/github/{person}")
+	public Callable<GithubUser> getUser(@PathVariable final String person) {
+		return () -> gitHubService.getUser(person);
 	}
 
 	//	@RequestMapping("/random")
