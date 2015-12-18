@@ -1,5 +1,7 @@
 package com.nmj.trendingNews.service;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -11,6 +13,8 @@ import com.nmj.trendingNews.domain.GithubUser;
 @Service
 public class GitHubService {
 
+	private static final Logger log = LoggerFactory.getLogger(GitHubService.class);
+
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -20,16 +24,19 @@ public class GitHubService {
 
 
 
-
 	@HystrixCommand(fallbackMethod = "fallbackUser")
 	public GithubUser getUser(final String user) {
+		//		final HystrixRequestContext context = HystrixRequestContext.initializeContext();
 		return restTemplate.getForObject(githubUsersEndpoint + user, GithubUser.class);
 	}
 
 
 	@SuppressWarnings("unused")
+	//	private GithubUser fallbackUser(final String user, final Throwable e) {
 	private GithubUser fallbackUser(final String user) {
-		System.err.println("In fallback method #fallbackUser. Returning default user.");
+		log.error("In fallback method for #getUser. Exception: {}");
+
+		//		HystrixRequestLog.getCurrentRequest();
 
 		final GithubUser defaultUser = new GithubUser();
 		defaultUser.setName("unknown");
