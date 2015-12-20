@@ -57,11 +57,10 @@ public class TrendingNewsControllerTest {
     	final String testUserName = "testUser";
     	GithubUser user = new GithubUser();
     	user.setName(testUserName);
-    
-    	when(githubServiceMock.getUser(testUserName)).thenReturn(user);
 
+    	when(githubServiceMock.getUser(testUserName)).thenReturn(user);
     	
-    	MvcResult mvcResult = this.mockMvc.perform(get("/github/" + testUserName))
+    	MvcResult mvcResult = mockMvc.perform(get("/github/" + testUserName))
     			.andExpect(status().isOk())
     			.andExpect(request().asyncStarted())
     			.andExpect(request().asyncResult(instanceOf(GithubUser.class)))
