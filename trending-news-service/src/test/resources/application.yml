@@ -1,0 +1,13 @@
+
+server:
+  contextPath: /trending-news
+  
+ribbon:
+  eureka:
+   enabled: false
+
+github:
+  url: https://github
+  endpoints:
+    users: /users/
+  listOfServers: https://api.github.com:443

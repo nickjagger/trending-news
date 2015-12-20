@@ -3,4 +3,5 @@ spring:
     name: trending-news
   cloud:
     config:
-      uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888}
+      #uri: ${vcap.services.config-service.credentials.uri:http://localhost:8888} # use this when deploying to CloudFoundry
+      uri: http://localhost:8888
