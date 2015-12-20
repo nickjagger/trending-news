@@ -1,3 +1,6 @@
+server:
+  contextPath: /trending-news
+  
 ribbon:
   eureka:
    enabled: false
