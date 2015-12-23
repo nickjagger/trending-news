@@ -14,5 +14,5 @@ github:
 guardian:
   url: http://guardian
   endpoints:
-    articles: /search/?api-key=test
+    articles: /search?api-key=test
   listOfServers: http://content.guardianapis.com
