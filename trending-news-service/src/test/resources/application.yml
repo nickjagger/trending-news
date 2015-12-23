@@ -11,3 +11,9 @@ github:
   endpoints:
     users: /users/
   listOfServers: https://api.github.com:443
+  
+guardian:
+  url: http://content.guardianapis.com
+  endpoints:
+    articles: /search?api-key=test
+#  listOfServers: http://content.guardianapis.com
