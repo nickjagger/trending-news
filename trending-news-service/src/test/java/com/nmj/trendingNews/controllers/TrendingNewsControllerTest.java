@@ -34,7 +34,6 @@ import com.nmj.trendingNews.service.GitHubService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-//@IntegrationTest({ "server.port:0", "spring.config.name:configserver" })
 public class TrendingNewsControllerTest {
 
 	@Mock

@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.EnableAsync;
 @SpringBootApplication
 @EnableAsync
 @EnableCircuitBreaker
-//@EnableJpaRepositories
 //@EnableDiscoveryClient
 public class Application {
 

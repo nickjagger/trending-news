@@ -1,5 +1,8 @@
 package com.nmj.trendingNews.domain;
 
+import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -7,13 +10,11 @@ public class GuardianArticle {
 	private String type;// : "liveblog"
 	private String sectionId; // : "business"
 	private String webTitle; // : "UK economy weaker than expected - live"
-	// private LocalDateTime webPublicationDate; // : "2015-12-23T10:00:13Z"
-	private String id; // :
-						// "business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live"
-	private String webUrl; // :
-							// http://www.theguardian.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
-	private String apiUrl; // :
-							// http://content.guardianapis.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
+	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
+	private Date webPublicationDate; // : "2015-12-23T10:00:13Z"
+	private String id; // "business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live"
+	private String webUrl; // http://www.theguardian.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
+	private String apiUrl; // http://content.guardianapis.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
 	private String sectionName; // : "Business"
 
 	public String getType() {
@@ -40,14 +41,14 @@ public class GuardianArticle {
 		this.webTitle = webTitle;
 	}
 
-	// public LocalDateTime getWebPublicationDate() {
-	// return webPublicationDate;
-	// }
-	//
-	// public void setWebPublicationDate(final LocalDateTime webPublicationDate)
-	// {
-	// this.webPublicationDate = webPublicationDate;
-	// }
+	
+	public Date getWebPublicationDate() {
+		return webPublicationDate;
+	}
+
+	public void setWebPublicationDate(Date webPublicationDate) {
+		this.webPublicationDate = webPublicationDate;
+	}
 
 	public String getId() {
 		return id;
