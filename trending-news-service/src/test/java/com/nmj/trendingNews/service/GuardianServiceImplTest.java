@@ -53,7 +53,7 @@ public class GuardianServiceImplTest {
 		// mockServer.verify();
 		// assertEquals("testUser", user.getName());
 		assertNotNull(articles);
-		Assert.assertFalse(articles.isEmpty());
+		Assert.assertTrue(articles.size() == 5);
 
 		System.out.println(articles);
 	}
