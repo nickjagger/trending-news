@@ -15,6 +15,13 @@ import com.nmj.trendingNews.domain.GuardianResponseWrapper;
 @Service
 public class GuardianServiceImpl implements GuardianService {
 
+	/**
+	 * 
+	 * TODO: Add Hystrix fallback method and unit tests. Add Logging
+	 * 
+	 */
+	
+	
 	private static final Logger log = LoggerFactory.getLogger(GuardianServiceImpl.class);
 
 	@Autowired

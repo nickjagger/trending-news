@@ -4,18 +4,20 @@ import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.MoreObjects;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GuardianArticle {
-	private String type;// : "liveblog"
-	private String sectionId; // : "business"
-	private String webTitle; // : "UK economy weaker than expected - live"
-	@JsonFormat(shape=JsonFormat.Shape.STRING, pattern="yyyy-MM-dd'T'HH:mm:ss'Z'")
-	private Date webPublicationDate; // : "2015-12-23T10:00:13Z"
-	private String id; // "business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live"
-	private String webUrl; // http://www.theguardian.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
-	private String apiUrl; // http://content.guardianapis.com/business/live/2015/dec/23/uk-economy-expected-to-see-slower-growth-live
-	private String sectionName; // : "Business"
+
+	private String type;
+	private String sectionId;
+	private String webTitle;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss'Z'")
+	private Date webPublicationDate;
+	private String id;
+	private String webUrl;
+	private String apiUrl;
+	private String sectionName;
 
 	public String getType() {
 		return type;
@@ -41,12 +43,11 @@ public class GuardianArticle {
 		this.webTitle = webTitle;
 	}
 
-	
 	public Date getWebPublicationDate() {
 		return webPublicationDate;
 	}
 
-	public void setWebPublicationDate(Date webPublicationDate) {
+	public void setWebPublicationDate(final Date webPublicationDate) {
 		this.webPublicationDate = webPublicationDate;
 	}
 
@@ -80,6 +81,19 @@ public class GuardianArticle {
 
 	public void setSectionName(final String sectionName) {
 		this.sectionName = sectionName;
+	}
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this).add("type", type) //
+				.add("sectionId", sectionId) //
+				.add("webTitle", webTitle) //
+				.add("webPublicationDate", webPublicationDate) //
+				.add("id", id) //
+				.add("webUrl", webUrl) //
+				.add("apiUrl", apiUrl) //
+				.add("sectionName", sectionName) //
+				.toString();
 	}
 
 }

@@ -1,14 +1,12 @@
 package com.nmj.trendingNews.domain;
 
-//@Entity
-//@Table(name = "tweets")
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.MoreObjects;
+
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Tweet {
 
-	//    @Id
-	//    @GeneratedValue
 	private Long id;
-
-	//    @Column(nullable = false)
 	private String text;
 
 	public Long getId() {
@@ -25,5 +23,13 @@ public class Tweet {
 
 	public void setText(final String text) {
 		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return MoreObjects.toStringHelper(this) //
+				.add("id", id) //
+				.add("text", text) //
+				.toString();
 	}
 }

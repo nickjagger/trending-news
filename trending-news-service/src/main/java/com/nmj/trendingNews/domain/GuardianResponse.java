@@ -7,7 +7,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GuardianResponse {
+
 	private String status;
+
 	@JsonProperty("results")
 	private List<GuardianArticle> articles;
 

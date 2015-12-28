@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class GuardianResponseWrapper {
+
 	private GuardianResponse response;
 
 	public GuardianResponse getResponse() {

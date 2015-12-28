@@ -1,4 +1,3 @@
-
 server:
   contextPath: /trending-news
   
@@ -14,4 +13,20 @@ github:
 guardian:
   url: http://content.guardianapis.com
   endpoints:
-    articles: /search?page-size=5&api-key=test
+    articles: /search?page-size=5&api-key=<INSERT_YOUR_GUARDIAN_API_KEY>
+
+twitter:
+  url: https://api.twitter.com:443
+  key: <INSERT_YOUR_TWITTER_API_KEY>
+  secret: <INSERT_YOUR_TWITTER_API_SECRET>
+  searchParams: "&lang=en&result_type=recent&count=5"
+  endpoints:
+    auth: /oauth2/token
+    search: /1.1/search/tweets.json?q=
+  listOfServers: https://api.twitter.com:443
+  
+  
+logging:
+  level:
+    com:
+      nmj: DEBUG

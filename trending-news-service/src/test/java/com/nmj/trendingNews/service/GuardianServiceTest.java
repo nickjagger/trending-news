@@ -17,7 +17,7 @@ import com.nmj.trendingNews.domain.GuardianArticle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
-public class GuardianServiceImplTest {
+public class GuardianServiceTest {
 
 	// @Configuration
 	// static class ContextConfiguration {
