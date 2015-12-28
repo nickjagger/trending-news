@@ -16,25 +16,23 @@ import com.nmj.trendingNews.domain.GuardianResponseWrapper;
 public class GuardianServiceImpl implements GuardianService {
 
 	/**
-	 * 
+	 *
 	 * TODO: Add Hystrix fallback method and unit tests. Add Logging
-	 * 
+	 *
 	 */
-	
-	
+
 	private static final Logger log = LoggerFactory.getLogger(GuardianServiceImpl.class);
 
 	@Autowired
 	private RestTemplate restTemplate;
 
-	@Value("${guardian.url}" + "${guardian.endpoints.articles}")
+	@Value("${guardian.url}" + "${guardian.endpoints.articles}" + "${guardian.key}")
 	private String guardianArticlesEndpoint;
 
 	@Override
 	// @HystrixCommand(fallbackMethod = "fallbackUser")
 	public List<GuardianArticle> getArticles() {
-		final GuardianResponseWrapper wrapper = restTemplate.getForObject(guardianArticlesEndpoint,
-				GuardianResponseWrapper.class);
+		final GuardianResponseWrapper wrapper = restTemplate.getForObject(guardianArticlesEndpoint, GuardianResponseWrapper.class);
 		return wrapper.getResponse().getArticles();
 	}
 }

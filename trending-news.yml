@@ -13,14 +13,15 @@ github:
 
 guardian:
   url: http://guardian
+  key: ENC(NKm5iqaHb1EV3gMXWQl6+y7yO9r21n5639H0Nk+ZGohUZGnS34aPSU9yZc9kZOE2)
   endpoints:
-    articles: /search?page-size=5&api-key=<INSERT_YOUR_GUARDIAN_API_KEY>
+    articles: /search?page-size=5&api-key=
   listOfServers: http://content.guardianapis.com
 
 twitter:
   url: https://twitter
-  key: <INSERT_YOUR_TWITTER_API_KEY>
-  secret: <INSERT_YOUR_TWITTER_API_SECRET>
+  key: ENC(bVjiyXtC3Rp4tR6QZC66qogjyA3mmq4rhATebI6UkZO32nu+bc5ZGw==)
+  secret: ENC(QLe3B95OIsnsFh3mKXztjbtyWr9Y3V0aKQZMneYazwqfn9rXN00mLAdSO3gclVVjGb9iLHDX43ywPTxpUoqSoQ==)
   searchParams: "&lang=en&result_type=recent&count=5"
   endpoints:
     auth: /oauth2/token
