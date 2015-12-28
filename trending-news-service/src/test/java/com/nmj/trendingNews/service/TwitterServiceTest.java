@@ -25,7 +25,8 @@ import org.springframework.test.web.client.match.MockRestRequestMatchers;
 import org.springframework.web.client.RestTemplate;
 
 import com.nmj.trendingNews.Application;
-import com.nmj.trendingNews.domain.Tweet;
+import com.nmj.trendingNews.domain.guardian.GuardianArticle;
+import com.nmj.trendingNews.domain.twitter.Tweet;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
@@ -68,7 +69,10 @@ public class TwitterServiceTest {
 						"{\"statuses\": [{\"created_at\": \"Mon Dec 28 15:25:40 +0000 2015\",\"id\": 681496241453318144,\"text\": \"test tweet text\"}]}",
 						MediaType.APPLICATION_JSON));
 
-		final List<Tweet> tweets = classUnderTest.getTweetsForArticle(null);
+		final GuardianArticle article = new GuardianArticle();
+		article.setWebTitle("sport");
+
+		final List<Tweet> tweets = classUnderTest.getTweetsForArticle(article);
 
 		mockServer.verify();
 
@@ -103,7 +107,10 @@ public class TwitterServiceTest {
 				.andExpect(method(HttpMethod.GET)) //
 				.andRespond(withStatus(FORBIDDEN));
 
-		final List<Tweet> tweets = classUnderTest.getTweetsForArticle(null);
+		final GuardianArticle article = new GuardianArticle();
+		article.setWebTitle("sport");
+
+		final List<Tweet> tweets = classUnderTest.getTweetsForArticle(article);
 
 		mockServer.verify();
 

@@ -22,7 +22,7 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 import org.springframework.web.client.RestTemplate;
 
 import com.nmj.trendingNews.Application;
-import com.nmj.trendingNews.domain.GuardianArticle;
+import com.nmj.trendingNews.domain.guardian.GuardianArticle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)

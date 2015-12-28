@@ -1,4 +1,4 @@
-package com.nmj.trendingNews.domain;
+package com.nmj.trendingNews.domain.twitter;
 
 public enum DefaultTweet {
 

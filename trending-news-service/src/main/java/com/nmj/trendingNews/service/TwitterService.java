@@ -2,8 +2,8 @@ package com.nmj.trendingNews.service;
 
 import java.util.List;
 
-import com.nmj.trendingNews.domain.GuardianArticle;
-import com.nmj.trendingNews.domain.Tweet;
+import com.nmj.trendingNews.domain.guardian.GuardianArticle;
+import com.nmj.trendingNews.domain.twitter.Tweet;
 
 public interface TwitterService {
 	

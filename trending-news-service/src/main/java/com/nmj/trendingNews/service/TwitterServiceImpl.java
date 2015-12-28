@@ -23,11 +23,12 @@ import org.springframework.web.client.RestTemplate;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.nmj.trendingNews.domain.DefaultTweet;
-import com.nmj.trendingNews.domain.GuardianArticle;
-import com.nmj.trendingNews.domain.Tweet;
-import com.nmj.trendingNews.domain.TwitterAccessToken;
-import com.nmj.trendingNews.domain.TwitterResponse;
+import com.nmj.trendingNews.domain.guardian.GuardianArticle;
+import com.nmj.trendingNews.domain.twitter.DefaultTweet;
+import com.nmj.trendingNews.domain.twitter.Tweet;
+import com.nmj.trendingNews.domain.twitter.TwitterAccessToken;
+import com.nmj.trendingNews.domain.twitter.TwitterResponse;
+import com.nmj.trendingNews.text.KeywordProcessor;
 
 @Service
 public class TwitterServiceImpl implements TwitterService {
@@ -38,6 +39,10 @@ public class TwitterServiceImpl implements TwitterService {
 
 	@Autowired
 	private RestTemplate restTemplate;
+
+	// TODO: Replace the default StopWordProcessor with an NLP processor
+	@Autowired
+	private KeywordProcessor keywordProcessor;
 
 	@Value("${twitter.url}" + "${twitter.endpoints.auth}")
 	private String accessTokenEndpoint;
@@ -120,10 +125,8 @@ public class TwitterServiceImpl implements TwitterService {
 		return "Basic " + keySecretEncoded;
 	}
 
-	// TODO: Parse article and populate "q" param with url encoded words
 	private String buildSearchUrl(final GuardianArticle article) {
-		final String searchTerms = "sport"; // TODO: this should be the article
-											// search terms
+		final String searchTerms = keywordProcessor.extractKeywordPhrase(article.getWebTitle());
 		return Joiner.on("").join(searchEndpoint, searchTerms, searchParams);
 	}
 }

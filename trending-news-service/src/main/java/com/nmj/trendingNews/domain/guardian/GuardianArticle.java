@@ -1,4 +1,4 @@
-package com.nmj.trendingNews.domain;
+package com.nmj.trendingNews.domain.guardian;
 
 import java.util.Date;
 

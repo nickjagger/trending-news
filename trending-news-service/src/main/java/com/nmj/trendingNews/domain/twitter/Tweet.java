@@ -1,4 +1,4 @@
-package com.nmj.trendingNews.domain;
+package com.nmj.trendingNews.domain.twitter;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.MoreObjects;

@@ -11,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.common.collect.Lists;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
-import com.nmj.trendingNews.domain.DefaultGuardianArticle;
-import com.nmj.trendingNews.domain.GuardianArticle;
-import com.nmj.trendingNews.domain.GuardianResponseWrapper;
+import com.nmj.trendingNews.domain.guardian.DefaultGuardianArticle;
+import com.nmj.trendingNews.domain.guardian.GuardianArticle;
+import com.nmj.trendingNews.domain.guardian.GuardianResponseWrapper;
 
 @Service
 public class GuardianServiceImpl implements GuardianService {
