@@ -9,18 +9,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import com.google.common.collect.Lists;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nmj.trendingNews.domain.GuardianArticle;
 import com.nmj.trendingNews.domain.GuardianResponseWrapper;
 
 @Service
 public class GuardianServiceImpl implements GuardianService {
-
-	/**
-	 *
-	 * TODO: Add Hystrix fallback method and unit tests. Add Logging
-	 *
-	 */
-
 	private static final Logger log = LoggerFactory.getLogger(GuardianServiceImpl.class);
 
 	@Autowired
@@ -30,9 +25,21 @@ public class GuardianServiceImpl implements GuardianService {
 	private String guardianArticlesEndpoint;
 
 	@Override
-	// @HystrixCommand(fallbackMethod = "fallbackUser")
+	@HystrixCommand(fallbackMethod = "fallbackGetArticles")
 	public List<GuardianArticle> getArticles() {
+		log.info("Getting articles");
 		final GuardianResponseWrapper wrapper = restTemplate.getForObject(guardianArticlesEndpoint, GuardianResponseWrapper.class);
+
+		log.info("Returning [{}] articles", wrapper.getResponse().getArticles().size());
 		return wrapper.getResponse().getArticles();
+	}
+
+	@SuppressWarnings("unused")
+	private List<GuardianArticle> fallbackGetArticles() {
+		log.error("In fallback method for #getArticles");
+
+		final GuardianArticle article = new GuardianArticle();
+		article.setWebTitle("Guardian service is currently unavailable");
+		return Lists.newArrayList(article);
 	}
 }

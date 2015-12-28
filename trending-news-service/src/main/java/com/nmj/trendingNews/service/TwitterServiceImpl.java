@@ -21,6 +21,8 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
 import com.google.common.base.Joiner;
+import com.google.common.collect.Lists;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.nmj.trendingNews.domain.GuardianArticle;
 import com.nmj.trendingNews.domain.Tweet;
 import com.nmj.trendingNews.domain.TwitterAccessToken;
@@ -28,17 +30,10 @@ import com.nmj.trendingNews.domain.TwitterResponse;
 
 @Service
 public class TwitterServiceImpl implements TwitterService {
-
 	private static final Logger log = LoggerFactory.getLogger(TwitterServiceImpl.class);
 
 	private static final String AUTH_BODY_KEY = "grant_type";
 	private static final String AUTH_BODY_VALUE = "client_credentials";
-
-	/**
-	 *
-	 * TODO: Add Hystrix fallback method and unit tests. Add Logging
-	 *
-	 */
 
 	@Autowired
 	private RestTemplate restTemplate;
@@ -59,7 +54,7 @@ public class TwitterServiceImpl implements TwitterService {
 	private String authSecret;
 
 	@Override
-	// @HystrixCommand(fallbackMethod = "fallbackUser")
+	@HystrixCommand(fallbackMethod = "fallbackGetTweetsForArticle")
 	public List<Tweet> getTweetsForArticle(final GuardianArticle article) {
 		log.info("Getting tweets for article: {}", article);
 
@@ -71,23 +66,26 @@ public class TwitterServiceImpl implements TwitterService {
 
 		final HttpEntity<?> httpEntity = new HttpEntity<>(headers);
 		final String searchUrl = buildSearchUrl(article);
+		log.debug("search url: {}", searchUrl);
 
 		// Search Twitter
 		final ResponseEntity<TwitterResponse> response = restTemplate.exchange(searchUrl, HttpMethod.GET, httpEntity, TwitterResponse.class);
 		log.debug("searchTweets response status: {}", response.getStatusCode());
 
 		final List<Tweet> tweets = response.getBody().getTweets();
-
-		System.out.println(tweets);
-
-		return null;
+		return tweets;
 	}
 
-	/**
-	 *
-	 * TODO: CACHE THIS METHOD
-	 *
-	 */
+	@SuppressWarnings("unused")
+	private List<Tweet> fallbackGetTweetsForArticle(final GuardianArticle article) {
+		log.error("In fallback method for #getTweetsForArticle with arg [{}]", article);
+
+		final Tweet tweet = new Tweet();
+		tweet.setText("Twitter service is currently unavailable");
+		return Lists.newArrayList(tweet);
+	}
+
+	// TODO: Cache this method
 	private TwitterAccessToken getAccessToken() {
 		log.info("Retrieving access token");
 
@@ -124,11 +122,7 @@ public class TwitterServiceImpl implements TwitterService {
 		return "Basic " + keySecretEncoded;
 	}
 
-	/**
-	 *
-	 * TODO: Parse article and populate "q" param with url encoded words
-	 *
-	 */
+	// TODO: Parse article and populate "q" param with url encoded words
 	private String buildSearchUrl(final GuardianArticle article) {
 		final String searchTerms = "sport"; // TODO: this should be the article
 											// search terms

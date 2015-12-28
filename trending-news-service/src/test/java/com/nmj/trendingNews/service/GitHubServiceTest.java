@@ -52,8 +52,7 @@ public class GitHubServiceTest {
 	public void getUserSuccess() throws Exception {
 		mockServer.expect(requestTo("https://github/users/testUser")) //
 				.andExpect(method(HttpMethod.GET)) //
-				.andRespond(
-						withSuccess("{ \"name\" : \"testUser\", \"blog\" : \"testBlog\"}", MediaType.APPLICATION_JSON));
+				.andRespond(withSuccess("{ \"name\" : \"testUser\", \"blog\" : \"testBlog\"}", MediaType.APPLICATION_JSON));
 
 		final GithubUser user = classUnderTest.getUser("testUser");
 
@@ -62,7 +61,7 @@ public class GitHubServiceTest {
 	}
 
 	@Test
-	public void getUserThrows403AndFallsbackToDefault() throws Exception {
+	public void getUserReturns403AndFallsbackToDefault() throws Exception {
 		mockServer.expect(requestTo("https://github/users/testUser")) //
 				.andExpect(method(HttpMethod.GET)) //
 				.andRespond(withStatus(FORBIDDEN));
