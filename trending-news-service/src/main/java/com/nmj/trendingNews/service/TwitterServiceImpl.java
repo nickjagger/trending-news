@@ -23,6 +23,7 @@ import org.springframework.web.client.RestTemplate;
 import com.google.common.base.Joiner;
 import com.google.common.collect.Lists;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.nmj.trendingNews.domain.DefaultTweet;
 import com.nmj.trendingNews.domain.GuardianArticle;
 import com.nmj.trendingNews.domain.Tweet;
 import com.nmj.trendingNews.domain.TwitterAccessToken;
@@ -79,10 +80,7 @@ public class TwitterServiceImpl implements TwitterService {
 	@SuppressWarnings("unused")
 	private List<Tweet> fallbackGetTweetsForArticle(final GuardianArticle article) {
 		log.error("In fallback method for #getTweetsForArticle with arg [{}]", article);
-
-		final Tweet tweet = new Tweet();
-		tweet.setText("Twitter service is currently unavailable");
-		return Lists.newArrayList(tweet);
+		return Lists.newArrayList(DefaultTweet.UNAVAILBLE.getTweet());
 	}
 
 	// TODO: Cache this method

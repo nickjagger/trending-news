@@ -11,6 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.common.collect.Lists;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.nmj.trendingNews.domain.DefaultGuardianArticle;
 import com.nmj.trendingNews.domain.GuardianArticle;
 import com.nmj.trendingNews.domain.GuardianResponseWrapper;
 
@@ -37,9 +38,6 @@ public class GuardianServiceImpl implements GuardianService {
 	@SuppressWarnings("unused")
 	private List<GuardianArticle> fallbackGetArticles() {
 		log.error("In fallback method for #getArticles");
-
-		final GuardianArticle article = new GuardianArticle();
-		article.setWebTitle("Guardian service is currently unavailable");
-		return Lists.newArrayList(article);
+		return Lists.newArrayList(DefaultGuardianArticle.UNAVAILBLE.getArticle());
 	}
 }

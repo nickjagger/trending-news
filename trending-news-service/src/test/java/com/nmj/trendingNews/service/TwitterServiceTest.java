@@ -89,7 +89,7 @@ public class TwitterServiceTest {
 
 		assertEquals(1, tweets.size());
 		final Tweet tweet = tweets.get(0);
-		assertEquals("Twitter service currently unavailable", tweet.getText());
+		assertEquals("Twitter service is currently unavailable", tweet.getText());
 	}
 
 	@Test
