@@ -9,6 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class StopWordKeywordProcessor implements KeywordProcessor {
+	private static final Logger log = LoggerFactory.getLogger(StopWordKeywordProcessor.class);
 
 	private static final String STOPWORDS_FILE = "/stopwords.txt";
 	private final List<String> stopWords;
@@ -35,6 +38,8 @@ public class StopWordKeywordProcessor implements KeywordProcessor {
 				.filter(s -> !stopWords.contains(s)) //
 				.map(this::urlEncode) //
 				.collect(Collectors.joining(" "));
+
+		log.debug("text [{}] produced keywords [{}]", text, keywords);
 		return keywords;
 
 	}

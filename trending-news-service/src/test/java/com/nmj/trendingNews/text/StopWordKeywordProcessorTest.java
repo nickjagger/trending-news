@@ -6,7 +6,7 @@ import org.junit.Test;
 
 public class StopWordKeywordProcessorTest {
 
-	StopWordKeywordProcessor classUnderTest = new StopWordKeywordProcessor();
+	private final StopWordKeywordProcessor classUnderTest = new StopWordKeywordProcessor();
 
 	@Test
 	public void extractKeywordsSuccess() throws Exception {
