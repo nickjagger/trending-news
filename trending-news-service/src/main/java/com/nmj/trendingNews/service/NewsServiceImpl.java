@@ -39,7 +39,7 @@ public class NewsServiceImpl implements NewsService {
 	}
 
 	private List<Tweet> getTweetsForArticle(final GuardianArticle article) {
-		if (DefaultGuardianArticle.UNAVAILBLE.getArticle().getWebTitle().equals(article.getWebTitle()))
+		if (DefaultGuardianArticle.UNAVAILBLE.getArticle().equals(article))
 			return Collections.<Tweet> emptyList();
 		else
 			return twitterService.getTweetsForArticle(article);

@@ -4,15 +4,14 @@ public enum DefaultTweet {
 
 	UNAVAILBLE("Twitter service is currently unavailable");
 
-	String text;
+	private final Tweet tweet;
 
 	DefaultTweet(final String text) {
-		this.text = text;
+		tweet = new Tweet();
+		tweet.setText(text);
 	}
 
 	public Tweet getTweet() {
-		final Tweet defaultTweet = new Tweet();
-		defaultTweet.setText(text);
-		return defaultTweet;
+		return tweet;
 	}
 }

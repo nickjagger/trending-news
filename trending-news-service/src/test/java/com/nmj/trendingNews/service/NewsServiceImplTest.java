@@ -72,7 +72,7 @@ public class NewsServiceImplTest {
 
 		final List<TrendingNews> news = classUnderTest.getNews();
 		assertEquals(1, news.size());
-		assertEquals(DefaultGuardianArticle.UNAVAILBLE.getArticle().getWebTitle(), news.get(0).getArticle().getWebTitle());
+		assertEquals(DefaultGuardianArticle.UNAVAILBLE.getArticle(), news.get(0).getArticle());
 
 		verify(twitterServiceMock, never()).getTweetsForArticle(any(GuardianArticle.class));
 	}

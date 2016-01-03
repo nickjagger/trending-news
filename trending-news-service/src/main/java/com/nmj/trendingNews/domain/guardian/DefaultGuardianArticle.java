@@ -4,15 +4,14 @@ public enum DefaultGuardianArticle {
 
 	UNAVAILBLE("Guardian service is currently unavailable");
 
-	String webTitle;
+	private final GuardianArticle article;
 
 	DefaultGuardianArticle(final String webTitle) {
-		this.webTitle = webTitle;
+		article = new GuardianArticle();
+		article.setWebTitle(webTitle);
 	}
 
 	public GuardianArticle getArticle() {
-		final GuardianArticle defaultArticle = new GuardianArticle();
-		defaultArticle.setWebTitle(webTitle);
-		return defaultArticle;
+		return article;
 	}
 }
