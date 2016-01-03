@@ -36,8 +36,8 @@ public class TrendingNewsController {
 	}
 
 	@RequestMapping("/news")
-	public List<TrendingNews> getTrendingNews() {
+	public Callable<List<TrendingNews>> getNews() {
 		log.info("Getting trending news");
-		return newsService.getNews();
+		return () -> newsService.getNews();
 	}
 }
