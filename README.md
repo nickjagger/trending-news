@@ -17,7 +17,7 @@ The project comprises the following features:
 * Github account and repository
  
 ### usage
-1. mvn install 
+1. `mvn install`
 2. Replace the Guardian key and Twitter key and secret with your own versions in file _trending-news.yml_ Twitter key and secret can be created here [Twitter App Management](https://apps.twitter.com). Guardian key can be created here [Guardian Open Platform](http://bonobo.capi.gutools.co.uk/register/developer).
 4. Add the modified _trending-news.yml_ file to your Github repo and point the trending-news-config-server to this new location by modifying file _/trending-news-config-server/src/main/resources/application.yml_
 5. In a terminal, navigate to the trending-news-config-server root folder and enter _mvn spring-boot:run_
