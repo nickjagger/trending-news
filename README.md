@@ -7,7 +7,7 @@ The project comprises the following features:
 
 * Asynchronous HTTP request processing leveraging Servlet 3.0 specification to avoid blocking request threads and thread pool starvation.
 * Externalised configuration, with a view towards cloud deployment, provided by [Spring Cloud Config](http://cloud.spring.io/spring-cloud-config).
-* Circuit breaker using [Hystrix](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients)to provide fault tolerance and prevent cascading failure.
+* Circuit breaker using [Hystrix](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#_circuit_breaker_hystrix_clients) to provide fault tolerance and prevent cascading failure.
 * Client side load balancing using [Ribbon](http://cloud.spring.io/spring-cloud-netflix/spring-cloud-netflix.html#spring-cloud-ribbon).
 
 
