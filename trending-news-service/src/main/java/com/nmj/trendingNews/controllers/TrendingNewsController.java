@@ -35,6 +35,7 @@ public class TrendingNewsController {
 		return () -> gitHubService.getUser(person);
 	}
 
+	// TODO: Replace the default SimpleAsyncTaskExecutor with an AsyncTaskExecutor implementation for Prod
 	@RequestMapping("/news")
 	public Callable<List<TrendingNews>> getNews() {
 		log.info("Getting trending news");

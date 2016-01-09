@@ -5,9 +5,8 @@
 
 	<artifactId>trending-news-service</artifactId>
 	<packaging>jar</packaging>
-
-	<name>fortune-teller-fortune-service</name>
-	<description>Fortunes Service</description>
+	<name>trending-news-service</name>
+	<description>Trending News Service</description>
 
 	<parent>
 		<groupId>org.nmj</groupId>
@@ -38,6 +37,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-hystrix</artifactId>
 		</dependency>
+		
+		<dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
 
 	<!-- Property Encryption -->
 		<dependency>
