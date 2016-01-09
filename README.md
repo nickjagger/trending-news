@@ -18,9 +18,11 @@ The project comprises the following features:
  
 ### usage
 1. `mvn install`
-2. Replace the Guardian key and Twitter key and secret with your own versions in file _trending-news.yml_ Twitter key and secret can be created here [Twitter App Management](https://apps.twitter.com). Guardian key can be created here [Guardian Open Platform](http://bonobo.capi.gutools.co.uk/register/developer).
-4. Add the modified _trending-news.yml_ file to your Github repo and point the trending-news-config-server to this new location by modifying file _/trending-news-config-server/src/main/resources/application.yml_
-5. In a terminal, navigate to the trending-news-config-server root folder and enter _mvn spring-boot:run_
-6. In a terminal, navigate to the trending-news-service root folder and enter _mvn spring-boot:run_ Once started, the application should be available on http://localhost:8080/trending-news/news
-7. In a terminal, navigate to the trending-news-hystrix-dashboard and enter _mvn spring-boot:run_. Once started, navigate to http://localhost:7979/. Enter the url http://localhost:8080/trending-news/hystrix.stream in the first text field and click _Monitor Stream_. The hystrix dashboard will show the status of currently executing requests and the circuit breaker statuses.
-8. Spring Boot Actuator metrics are available on the endpoint http://localhost:8080/trending-news/metrics.
+2. Replace the Guardian key and Twitter key and secret with your own versions in file _trending-news.yml_.
+ * Twitter key and secret can be created here: [Twitter App Management](https://apps.twitter.com). 
+ * Guardian key can be created here: [Guardian Open Platform](http://bonobo.capi.gutools.co.uk/register/developer).
+3. Add the modified _trending-news.yml_ file to your Github repo and point the trending-news-config-server to this new location by modifying file _/trending-news-config-server/src/main/resources/application.yml_
+4. In a terminal, navigate to the trending-news-config-server root folder and enter `mvn spring-boot:run`.
+5. In a terminal, navigate to the trending-news-service root folder and enter `mvn spring-boot:run`. Once started, the application should be available on http://localhost:8080/trending-news/news
+6. In a terminal, navigate to the trending-news-hystrix-dashboard and enter `mvn spring-boot:run`. Once started, navigate to http://localhost:7979/. Enter the url http://localhost:8080/trending-news/hystrix.stream in the first text field and click _Monitor Stream_. The hystrix dashboard will show the status of currently executing requests and the circuit breaker statuses.
+7. Spring Boot Actuator metrics are available on the endpoint http://localhost:8080/trending-news/metrics.
