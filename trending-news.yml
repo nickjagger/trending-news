@@ -34,3 +34,4 @@ logging:
       netflix:
         hystrix:
           AbstractCommand: DEBUG
+      nmj: DEBUG

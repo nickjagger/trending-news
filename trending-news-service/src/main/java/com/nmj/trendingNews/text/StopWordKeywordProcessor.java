@@ -51,5 +51,4 @@ public class StopWordKeywordProcessor implements KeywordProcessor {
 			throw new RuntimeException("Unable to encode search term, UTF-8 is unsupported", e);
 		}
 	}
-
 }

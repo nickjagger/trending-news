@@ -1,10 +1,5 @@
 package com.nmj.trendingNews.controllers;
 
-import static org.hamcrest.Matchers.instanceOf;
-import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.asyncDispatch;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,11 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.google.common.collect.Lists;
 import com.nmj.trendingNews.Application;
-import com.nmj.trendingNews.domain.GithubUser;
 import com.nmj.trendingNews.domain.TrendingNews;
 import com.nmj.trendingNews.domain.guardian.DefaultGuardianArticle;
 import com.nmj.trendingNews.domain.twitter.DefaultTweet;
-import com.nmj.trendingNews.service.GitHubService;
 import com.nmj.trendingNews.service.NewsService;
 
 /**
@@ -44,9 +37,6 @@ import com.nmj.trendingNews.service.NewsService;
 public class TrendingNewsControllerTest {
 
 	@Mock
-	private GitHubService githubServiceMock;
-
-	@Mock
 	private NewsService newsServiceMock;
 
 	@InjectMocks
@@ -58,24 +48,6 @@ public class TrendingNewsControllerTest {
 	public void setup() {
 		MockitoAnnotations.initMocks(this);
 		mockMvc = MockMvcBuilders.standaloneSetup(classUnderTest).build();
-	}
-
-	@Test
-	public void getUserSuccess() throws Exception {
-		final String testUserName = "testUser";
-		final GithubUser user = new GithubUser();
-		user.setName(testUserName);
-
-		when(githubServiceMock.getUser(testUserName)).thenReturn(user);
-
-		final MvcResult mvcResult = mockMvc.perform(get("/github/" + testUserName)).andExpect(status().isOk()).andExpect(request().asyncStarted())
-				.andExpect(request().asyncResult(instanceOf(GithubUser.class))).andReturn();
-
-		final GithubUser githubUser = (GithubUser) mvcResult.getAsyncResult();
-		assertEquals(testUserName, githubUser.getName());
-
-		verify(githubServiceMock, times(1)).getUser(testUserName);
-		verifyNoMoreInteractions(githubServiceMock);
 	}
 
 	@Test
