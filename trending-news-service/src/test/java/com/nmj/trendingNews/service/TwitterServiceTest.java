@@ -26,6 +26,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.nmj.trendingNews.Application;
 import com.nmj.trendingNews.domain.guardian.GuardianArticle;
+import com.nmj.trendingNews.domain.twitter.DefaultTweet;
 import com.nmj.trendingNews.domain.twitter.Tweet;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -65,8 +66,7 @@ public class TwitterServiceTest {
 		mockServer.expect(requestTo("https://api.twitter.com:443/1.1/search/tweets.json?q=sport&lang=en&result_type=recent&count=5")) //
 				.andExpect(header("Authorization", "bearer TOKEN")) //
 				.andExpect(method(HttpMethod.GET)) //
-				.andRespond(withSuccess(
-						"{\"statuses\": [{\"created_at\": \"Mon Dec 28 15:25:40 +0000 2015\",\"id\": 681496241453318144,\"text\": \"test tweet text\"}]}",
+				.andRespond(withSuccess("{\"statuses\": [{\"created_at\": \"Mon Dec 28 15:25:40 +0000 2015\",\"id\": 123,\"text\": \"test tweet text\"}]}",
 						MediaType.APPLICATION_JSON));
 
 		final GuardianArticle article = new GuardianArticle();
@@ -79,7 +79,7 @@ public class TwitterServiceTest {
 		assertEquals(1, tweets.size());
 		final Tweet tweet = tweets.get(0);
 		assertEquals("test tweet text", tweet.getText());
-		assertEquals(Long.valueOf(681496241453318144L), tweet.getId());
+		assertEquals(Long.valueOf(123), tweet.getId());
 	}
 
 	@Test
@@ -92,8 +92,7 @@ public class TwitterServiceTest {
 		mockServer.verify();
 
 		assertEquals(1, tweets.size());
-		final Tweet tweet = tweets.get(0);
-		assertEquals("Twitter service is currently unavailable", tweet.getText());
+		assertEquals(DefaultTweet.UNAVAILBLE.getTweet(), tweets.get(0));
 	}
 
 	@Test
@@ -115,8 +114,7 @@ public class TwitterServiceTest {
 		mockServer.verify();
 
 		assertEquals(1, tweets.size());
-		final Tweet tweet = tweets.get(0);
-		assertEquals("Twitter service is currently unavailable", tweet.getText());
+		assertEquals(DefaultTweet.UNAVAILBLE.getTweet(), tweets.get(0));
 	}
 
 }

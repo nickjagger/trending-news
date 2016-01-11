@@ -22,6 +22,7 @@ import org.springframework.test.web.client.response.MockRestResponseCreators;
 import org.springframework.web.client.RestTemplate;
 
 import com.nmj.trendingNews.Application;
+import com.nmj.trendingNews.domain.guardian.DefaultGuardianArticle;
 import com.nmj.trendingNews.domain.guardian.GuardianArticle;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -77,7 +78,7 @@ public class GuardianServiceTest {
 		mockServer.verify();
 
 		assertEquals(1, articles.size());
-		assertEquals("Guardian service is currently unavailable", articles.get(0).getWebTitle());
+		assertEquals(DefaultGuardianArticle.UNAVAILBLE.getArticle(), articles.get(0));
 
 	}
 }
