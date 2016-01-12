@@ -15,6 +15,8 @@ The project comprises the following features:
 * Java 8
 * Maven 3
 * Github account and repository
+* Guardian Open API key
+* Twitter Rest API key and secret
  
 ### usage
 1. `mvn install`
